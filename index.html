@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Year 4 English - Unit 1: My Country of Birth 闪卡与双步大闯关</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fredoka', 'Noto Sans SC', sans-serif;
+      background: linear-gradient(135deg, #E0F2FE 0%, #FEF3C7 50%, #FCE7F3 100%);
+      min-height: 100vh;
+      user-select: none;
+      overflow-x: hidden;
+    }
+
+    /* 立体绘本卡片 */
+    .panel-card {
+      background: rgba(255, 255, 255, 0.97);
+      border: 4px solid #3B82F6;
+      box-shadow: 0 10px 0 #2563EB, 0 18px 30px rgba(37, 99, 235, 0.16);
+      border-radius: 28px;
+    }
+
+    .flashcard-box {
+      background: linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 100%);
+      border: 4px solid #F59E0B;
+      box-shadow: 0 8px 0 #D97706;
+      border-radius: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    /* 3D 按钮 */
+    .btn-3d {
+      transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      top: 0;
+    }
+    .btn-3d:active:not(:disabled) {
+      top: 4px;
+      box-shadow: 0 1px 0 currentColor !important;
+    }
+    .btn-3d:disabled {
+      opacity: 0.52;
+      cursor: not-allowed;
+      filter: grayscale(35%);
+    }
+
+    /* 测验选项按钮 */
+    .option-btn {
+      background: #FFFFFF;
+      border: 3px solid #93C5FD;
+      box-shadow: 0 5px 0 #60A5FA;
+      color: #1E3A8A;
+    }
+    .option-btn:hover:not(:disabled) {
+      background: #EFF6FF;
+      border-color: #2563EB;
+      transform: translateY(-2px);
+    }
+
+    /* 动画 */
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      70% { transform: scale(1.06); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop {
+      animation: popIn 0.32s ease-out forwards;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+    .animate-shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    @keyframes soundWave {
+      0%, 100% { height: 7px; }
+      50% { height: 22px; }
+    }
+    .wave-bar {
+      width: 4px;
+      background-color: #F59E0B;
+      border-radius: 9999px;
+      animation: soundWave 0.55s infinite ease-in-out;
+    }
+    .wave-bar:nth-child(2) { animation-delay: 0.12s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.24s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.36s; }
+
+    /* 句子横线填空槽 */
+    .blank-slot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 120px;
+      padding: 2px 12px;
+      margin: 0 5px;
+      border-bottom: 4px dashed #F59E0B;
+      background-color: #FEF3C7;
+      border-radius: 10px;
+      color: #D97706;
+      font-weight: 800;
+      transition: all 0.28s ease;
+    }
+    .blank-slot.filled {
+      border-bottom: 4px solid #10B981;
+      background-color: #D1FAE5;
+      color: #065F46;
+      transform: scale(1.04);
+    }
+
+    /* 较难词汇华语括弧提示 */
+    .hint-cn {
+      color: #4F46E5;
+      font-size: 0.8em;
+      font-weight: 700;
+      background: #EEF2FF;
+      border: 1px solid #C7D2FE;
+      padding: 1px 6px;
+      border-radius: 8px;
+      margin-left: 2px;
+      display: inline-block;
+    }
+
+    /* 紧张模式红框闪烁 */
+    @keyframes dangerPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); border-color: #EF4444; }
+      50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); border-color: #B91C1C; }
+    }
+    .tension-border {
+      animation: dangerPulse 0.7s infinite;
+    }
+  </style>
+</head>
+<body class="p-3 sm:p-5 flex flex-col items-center">
+
+  <!-- ==================== 顶部工具栏 ==================== -->
+  <header class="w-full max-w-7xl flex flex-wrap items-center justify-between gap-2 mb-4 px-1">
+    <div class="flex items-center gap-2.5 bg-white/95 px-4 py-2 rounded-full shadow-md border-2 border-blue-400">
+      <span class="text-2xl">🌍</span>
+      <div>
+        <h1 class="text-sm sm:text-lg font-black text-blue-950 leading-tight">Year 4 English • Unit 1: My Country of Birth</h1>
+        <p class="text-xs text-blue-700 font-bold">先学闪卡 (5秒/张) ➔ 再听读双步闯关 (20秒/题)</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2">
+      <!-- 语速选择 -->
+      <div class="hidden md:flex items-center gap-1.5 bg-white/90 px-3 py-1.5 rounded-2xl border-2 border-indigo-200 text-xs font-bold text-indigo-900">
+        <span>🗣️ 语速:</span>
+        <select id="speechRateSelect" class="bg-transparent font-extrabold text-indigo-700 focus:outline-none">
+          <option value="0.72">🐢 慢速 (0.72x)</option>
+          <option value="0.85" selected>🐇 标准 (0.85x)</option>
+          <option value="1.0">🚀 正常 (1.0x)</option>
+        </select>
+      </div>
+
+      <!-- 背景音乐开关 -->
+      <button id="bgmBtn" onclick="toggleBGM()" class="btn-3d bg-amber-100 border-2 border-amber-400 shadow-[0_4px_0_#D97706] text-amber-900 font-extrabold px-3 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1">
+        <span id="bgmIcon">🎵</span>
+        <span id="bgmText">音乐开</span>
+      </button>
+
+      <!-- 教师后台 & Google Sheet 设置 -->
+      <button onclick="openTeacherModal()" class="btn-3d bg-indigo-100 border-2 border-indigo-400 shadow-[0_4px_0_#4F46E5] text-indigo-900 font-extrabold px-3 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1">
+        <span>👩‍🏫</span>
+        <span>教师成绩汇总 & Sheet设置</span>
+      </button>
+
+      <!-- 返回主页 -->
+      <button id="homeBtn" onclick="confirmReturnHome()" class="hidden btn-3d bg-rose-100 border-2 border-rose-400 shadow-[0_4px_0_#E11D48] text-rose-800 font-extrabold px-3 py-2 rounded-2xl text-xs sm:text-sm">
+        🏠 更换关卡
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== 1. 学生登录与关卡选择界面 ==================== -->
+  <section id="loginScreen" class="w-full max-w-4xl panel-card p-6 sm:p-9 text-center my-auto">
+    <div class="text-5xl sm:text-6xl mb-2">🇲🇾🇺🇸🇬🇧🇧🇷🇰🇷🇨🇳</div>
+    <span class="inline-block bg-blue-100 text-blue-800 border border-blue-300 px-3.5 py-1 rounded-full text-xs sm:text-sm font-black mb-2">
+      四年级英文课本 Unit 1 (Textbook pp. 5 – 14 • 全套 64 个生字)
+    </span>
+    <h2 class="text-2xl sm:text-4xl font-black text-blue-950 mb-4">My Country of Birth 互动学习闯关</h2>
+
+    <!-- 学生资料输入表单（用于成绩记录与发送电邮给老师） -->
+    <div class="bg-blue-50/90 border-2 border-blue-200 rounded-3xl p-4 sm:p-6 max-w-xl mx-auto mb-6 text-left">
+      <h3 class="text-base font-black text-blue-900 mb-3 flex items-center gap-2">
+        <span>🧑‍🎓</span>
+        <span>请先填写学生资料（完成后自动汇报成绩给老师）：</span>
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-extrabold text-blue-800 mb-1">学生英文/华文姓名 (Name) *</label>
+          <input id="studentNameInput" type="text" placeholder="例如：Tan Wei Ming 陈伟明" class="w-full px-3.5 py-2.5 rounded-xl border-2 border-blue-300 font-bold text-gray-800 focus:outline-none focus:border-blue-600 bg-white" />
+        </div>
+        <div>
+          <label class="block text-xs font-extrabold text-blue-800 mb-1">班级 (Class) *</label>
+          <select id="studentClassInput" class="w-full px-3 py-2.5 rounded-xl border-2 border-blue-300 font-bold text-gray-800 focus:outline-none focus:border-blue-600 bg-white">
+            <option value="4M">4M</option>
+            <option value="4K">4K</option>
+            <option value="4B">4B</option>
+            <option value="4J">4J</option>
+            <option value="4A">4A</option>
+            <option value="4C">4C</option>
+          </select>
+        </div>
+      </div>
+      <p id="loginErrorMsg" class="hidden text-rose-600 text-xs font-extrabold mt-2">⚠️ 请先输入你的姓名再开始闯关哦！</p>
+    </div>
+
+    <!-- 选择学习单元范围 -->
+    <div class="max-w-3xl mx-auto">
+      <p class="text-sm font-black text-gray-700 mb-3">📚 请选择要挑战的生字关卡（每个生字先看闪卡 5 秒，再进行双步测验）：</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <button onclick="validateAndStart('stage1')" class="btn-3d bg-gradient-to-b from-amber-300 to-amber-400 border-2 border-amber-500 shadow-[0_5px_0_#D97706] text-amber-950 p-4 rounded-2xl text-left">
+          <div class="text-xs font-black bg-white/70 inline-block px-2 py-0.5 rounded-md mb-1">第 1 关 (16题)</div>
+          <div class="text-base font-black">国家与国籍 (1 - 16)</div>
+          <div class="text-xs font-bold opacity-80 mt-0.5">Malaysia, the UK, British, American...</div>
+        </button>
+
+        <button onclick="validateAndStart('stage2')" class="btn-3d bg-gradient-to-b from-sky-300 to-sky-400 border-2 border-sky-500 shadow-[0_5px_0_#0284C7] text-sky-950 p-4 rounded-2xl text-left">
+          <div class="text-xs font-black bg-white/70 inline-block px-2 py-0.5 rounded-md mb-1">第 2 关 (16题)</div>
+          <div class="text-base font-black">学校与日常活动 (17 - 32)</div>
+          <div class="text-xs font-bold opacity-80 mt-0.5">school trip, museum, ice-skate, usually...</div>
+        </button>
+
+        <button onclick="validateAndStart('stage3')" class="btn-3d bg-gradient-to-b from-emerald-300 to-emerald-400 border-2 border-emerald-500 shadow-[0_5px_0_#059669] text-emerald-950 p-4 rounded-2xl text-left">
+          <div class="text-xs font-black bg-white/70 inline-block px-2 py-0.5 rounded-md mb-1">第 3 关 (16题)</div>
+          <div class="text-base font-black">频率副词与运动 (33 - 48)</div>
+          <div class="text-xs font-bold opacity-80 mt-0.5">always, never, badminton, karate...</div>
+        </button>
+
+        <button onclick="validateAndStart('stage4')" class="btn-3d bg-gradient-to-b from-pink-300 to-pink-400 border-2 border-pink-500 shadow-[0_5px_0_#DB2777] text-pink-950 p-4 rounded-2xl text-left">
+          <div class="text-xs font-black bg-white/70 inline-block px-2 py-0.5 rounded-md mb-1">第 4 关 (16题)</div>
+          <div class="text-base font-black">爱好与生活交际 (49 - 64)</div>
+          <div class="text-xs font-bold opacity-80 mt-0.5">pen pal, surprise, actor, volleyball...</div>
+        </button>
+
+        <button onclick="validateAndStart('quick10')" class="btn-3d bg-gradient-to-b from-purple-400 to-purple-500 border-2 border-purple-600 shadow-[0_5px_0_#6D28D9] text-white p-4 rounded-2xl text-left">
+          <div class="text-xs font-black bg-black/20 inline-block px-2 py-0.5 rounded-md mb-1">随堂小测 (10题)</div>
+          <div class="text-base font-black">⚡ 随机精选 10 题快测</div>
+          <div class="text-xs font-bold text-purple-100 mt-0.5">适合课堂 5 分钟快速复习</div>
+        </button>
+
+        <button onclick="validateAndStart('all64')" class="btn-3d bg-gradient-to-b from-rose-500 to-rose-600 border-2 border-rose-700 shadow-[0_5px_0_#9F1239] text-white p-4 rounded-2xl text-left">
+          <div class="text-xs font-black bg-black/20 inline-block px-2 py-0.5 rounded-md mb-1">终极挑战 (64题)</div>
+          <div class="text-base font-black">🏆 Unit 1 全套 64 词总复习</div>
+          <div class="text-xs font-bold text-rose-100 mt-0.5">挑战课本第 1 至 64 号全部词汇</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. 核心双栏分屏界面（左边 Flashcard + 右边 Quiz） ==================== -->
+  <main id="workspaceScreen" class="hidden w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+
+    <!-- 左栏 (5列)：Flashcard 生字闪卡学习区 -->
+    <section id="leftFlashcardPanel" class="lg:col-span-5 panel-card p-5 sm:p-6 flex flex-col justify-between border-amber-500 shadow-[0_10px_0_#D97706]">
+      <div>
+        <!-- 左栏标题与学习进度 -->
+        <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b-2 border-amber-200">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🗂️</span>
+            <div>
+              <h2 class="text-lg font-black text-amber-950">第一步：Flashcard 生字闪卡</h2>
+              <p class="text-xs font-bold text-amber-700">每张必须看满 5 秒，全部看完解锁右边测验</p>
+            </div>
+          </div>
+          <span id="fcProgressBadge" class="bg-amber-200 text-amber-950 font-black px-3 py-1 rounded-full text-xs sm:text-sm">
+            1 / 16
+          </span>
+        </div>
+
+        <!-- 闪卡进度条 -->
+        <div class="w-full h-3 bg-amber-100 rounded-full overflow-hidden border border-amber-300 mb-4">
+          <div id="fcProgressBar" class="h-full bg-amber-500 transition-all duration-300" style="width: 6%;"></div>
+        </div>
+
+        <!-- 闪卡主体卡片 -->
+        <div id="flashcardBody" class="flashcard-box p-5 sm:p-6 text-center relative">
+          <div class="flex items-center justify-between mb-3">
+            <span id="fcNumberTag" class="bg-amber-500 text-white text-xs font-black px-2.5 py-1 rounded-lg">#1</span>
+            <button onclick="pronounceCurrentFlashcard()" class="btn-3d bg-white border-2 border-amber-400 shadow-[0_3px_0_#D97706] text-amber-900 text-xs font-extrabold px-3 py-1.5 rounded-xl flex items-center gap-1">
+              <span>🔊</span>
+              <span>重听发音与例句</span>
+            </button>
+          </div>
+
+          <!-- 英文生字 -->
+          <div id="fcWord" class="text-3xl sm:text-4xl font-black text-blue-950 my-2 tracking-wide">
+            Malaysia
+          </div>
+
+          <!-- 华语意思 -->
+          <div id="fcMeaning" class="inline-block bg-rose-100 border-2 border-rose-300 text-rose-800 text-xl sm:text-2xl font-black px-5 py-1.5 rounded-2xl mb-4">
+            马来西亚
+          </div>
+
+          <!-- 同义词/反义词提示（课本若有提供则显示） -->
+          <div id="fcExtraNotes" class="hidden text-xs font-bold text-purple-800 bg-purple-100 border border-purple-300 rounded-xl px-3 py-1.5 mb-3">
+          </div>
+
+          <!-- 课本例句（难词带华语括弧提示） -->
+          <div class="bg-white/90 border-2 border-amber-300 rounded-2xl p-3.5 text-left">
+            <div class="text-xs font-black text-amber-700 mb-1">📖 课本例句 (Sentence)：</div>
+            <p id="fcSentence" class="text-base sm:text-lg font-bold text-gray-800 leading-relaxed">
+              Malaysia is a peaceful (和平的) country (国家).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部翻卡控制按钮（含 5 秒强制倒计时） -->
+      <div class="mt-5 pt-3 border-t-2 border-amber-100">
+        <div class="flex items-center justify-between gap-3">
+          <button id="fcPrevBtn" onclick="prevFlashcard()" class="btn-3d bg-gray-200 border-2 border-gray-400 shadow-[0_4px_0_#9CA3AF] text-gray-800 font-extrabold px-4 py-3 rounded-2xl text-sm">
+            ⬅️ 上一张
+          </button>
+
+          <button id="fcNextBtn" onclick="nextFlashcard()" disabled class="flex-1 btn-3d bg-emerald-500 border-2 border-emerald-700 shadow-[0_4px_0_#047857] text-white font-black px-4 py-3 rounded-2xl text-sm sm:text-base flex items-center justify-center gap-2">
+            <span id="fcNextBtnText">⏳ 请仔细学习 (5s)</span>
+          </button>
+        </div>
+
+        <!-- 已全部看完后的提示 -->
+        <div id="fcAllDoneBanner" class="hidden mt-3 bg-emerald-100 border-2 border-emerald-400 text-emerald-900 rounded-2xl p-2.5 text-center text-xs sm:text-sm font-black animate-pop">
+          🎉 太棒了！所有闪卡已学习完毕，右边测验已解锁！你也可以随时在左边翻看复习。
+        </div>
+      </div>
+    </section>
+
+    <!-- 右栏 (7列)：Quiz 听读双步限时测验区 -->
+    <section id="rightQuizPanel" class="lg:col-span-7 panel-card p-5 sm:p-7 relative flex flex-col justify-between overflow-hidden">
+
+      <!-- 锁定遮罩层：未完成左边全部 Flashcard 前严禁作答 -->
+      <div id="quizLockOverlay" class="absolute inset-0 bg-slate-900/75 backdrop-blur-xs z-20 flex flex-col items-center justify-center p-6 text-center text-white">
+        <div class="bg-white/15 border-2 border-white/30 rounded-3xl p-6 sm:p-8 max-w-md backdrop-blur-md">
+          <div class="text-6xl mb-3 animate-bounce">🔒</div>
+          <h3 class="text-2xl font-black text-amber-300 mb-2">测验区暂未解锁！</h3>
+          <p class="text-sm sm:text-base font-bold text-blue-100 leading-relaxed mb-4">
+            老师规定：<span class="text-amber-300 underline">不能跳过左边 Flashcard</span> 直接做测验哦！<br/>
+            请先在左边认真看完每一张生字闪卡（每张至少 5 秒）。
+          </p>
+          <div class="bg-black/40 rounded-2xl px-4 py-2.5 text-sm font-black text-emerald-300 border border-emerald-400/40">
+            当前闪卡学习进度：<span id="overlayFcCount">0 / 16</span> 张已完成
+          </div>
+        </div>
+      </div>
+
+      <!-- 右栏顶部状态：题号、20秒倒计时、得分 -->
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b-2 border-blue-100">
+          <div class="flex items-center gap-2 bg-blue-100 px-3.5 py-1.5 rounded-2xl border border-blue-300">
+            <span class="text-base">📝</span>
+            <span class="font-black text-blue-950 text-xs sm:text-sm">
+              测验第 <span id="qIndexDisplay" class="text-blue-600 text-base">1</span> / <span id="qTotalDisplay">16</span> 题
+            </span>
+          </div>
+
+          <!-- 20秒倒计时条 -->
+          <div class="flex-1 min-w-[170px] max-w-xs mx-auto">
+            <div class="flex justify-between items-center text-xs font-black mb-1">
+              <span id="timerStatusLabel" class="text-amber-600">🎧 等待读完句子...</span>
+              <span id="timerText" class="text-sm sm:text-base text-emerald-700 font-black">20s</span>
+            </div>
+            <div class="w-full h-3.5 bg-gray-200 rounded-full overflow-hidden border border-gray-300 p-0.5">
+              <div id="timerBar" class="h-full bg-emerald-500 rounded-full transition-all duration-200" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <!-- 对错实时计数 -->
+          <div class="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-2xl border border-slate-300 text-xs sm:text-sm font-black">
+            <span class="text-emerald-600">✅ <span id="liveRightCount">0</span></span>
+            <span class="text-gray-300">|</span>
+            <span class="text-rose-600">❌ <span id="liveWrongCount">0</span></span>
+          </div>
+        </div>
+
+        <!-- 双步提示条 -->
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <div id="step1Pill" class="px-3.5 py-1 rounded-full text-xs font-black bg-blue-600 text-white shadow-sm">
+            1️⃣ 第一步：选英文字填空
+          </div>
+          <span class="text-gray-400 font-black">➔</span>
+          <div id="step2Pill" class="px-3.5 py-1 rounded-full text-xs font-black bg-gray-200 text-gray-500">
+            2️⃣ 第二步：选华语意思
+          </div>
+        </div>
+
+        <!-- 听读锁定提示栏 -->
+        <div class="flex items-center justify-between gap-2 bg-amber-50 border-2 border-amber-300 rounded-2xl px-3.5 py-2.5 mb-4">
+          <div class="flex items-center gap-2">
+            <div id="soundWaveAnim" class="flex items-center gap-1 h-5">
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+            </div>
+            <span id="audioLockNotice" class="text-xs sm:text-sm font-black text-amber-800">
+              🔊 正在朗读句子，必须等句子读完后才能作答！
+            </span>
+          </div>
+          <button onclick="replayQuizSentence()" class="btn-3d bg-amber-400 border-2 border-amber-600 shadow-[0_3px_0_#B45309] text-amber-950 font-black px-3 py-1.5 rounded-xl text-xs shrink-0">
+            🔁 重听句子
+          </button>
+        </div>
+
+        <!-- 句子展示卡片（较难词汇带华语括弧提示） -->
+        <div class="bg-blue-50/80 border-2 border-blue-200 rounded-3xl p-4 sm:p-6 mb-5 text-center">
+          <div class="text-xs font-bold text-indigo-600 mb-2">💡 提示：括弧内为较难生字的华语意思</div>
+          <div id="sentenceContainer" class="text-lg sm:text-2xl font-extrabold text-gray-800 leading-relaxed sm:leading-loose">
+            <!-- 动态句子 -->
+          </div>
+        </div>
+
+        <!-- 4个选项区 -->
+        <div>
+          <div class="flex items-center justify-between mb-2.5">
+            <h4 id="instructionHeader" class="text-sm sm:text-base font-black text-blue-950">
+              ✏️ 请选出正确的英文字填入横线中：
+            </h4>
+            <span id="lockBadge" class="bg-amber-200 text-amber-900 text-xs font-black px-2.5 py-0.5 rounded-full">
+              🔒 朗读中
+            </span>
+          </div>
+
+          <div id="optionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- 动态选项 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 答题即时反馈 -->
+      <div id="feedbackBanner" class="hidden mt-4 p-3 rounded-2xl border-2 text-center text-sm font-black animate-pop">
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== 3. 完成结算与 Google Sheet / Email 汇报界面 ==================== -->
+  <section id="resultScreen" class="hidden w-full max-w-4xl panel-card p-6 sm:p-9 text-center">
+    <div class="text-6xl mb-2 animate-bounce">🏆</div>
+    <h2 class="text-2xl sm:text-4xl font-black text-blue-950 mb-1">Unit 1 闯关完成！</h2>
+    <p id="resultStudentBadge" class="text-sm sm:text-base font-extrabold text-indigo-700 mb-5">
+      学生：- | 班级：- | 关卡：-
+    </p>
+
+    <!-- 成绩核心数据卡片 -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto mb-6">
+      <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-3.5">
+        <div class="text-xs font-bold text-emerald-800">✅ 回答正确</div>
+        <div id="resCorrect" class="text-2xl sm:text-3xl font-black text-emerald-600 mt-1">0 题</div>
+      </div>
+      <div class="bg-rose-50 border-2 border-rose-300 rounded-2xl p-3.5">
+        <div class="text-xs font-bold text-rose-800">❌ 回答错误</div>
+        <div id="resWrong" class="text-2xl sm:text-3xl font-black text-rose-600 mt-1">0 题</div>
+      </div>
+      <div class="bg-blue-50 border-2 border-blue-300 rounded-2xl p-3.5">
+        <div class="text-xs font-bold text-blue-800">🎯 正确率</div>
+        <div id="resAccuracy" class="text-2xl sm:text-3xl font-black text-blue-600 mt-1">0%</div>
+      </div>
+      <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-3.5">
+        <div class="text-xs font-bold text-amber-800">⭐ 总得分</div>
+        <div id="resScore" class="text-2xl sm:text-3xl font-black text-amber-600 mt-1">0</div>
+      </div>
+    </div>
+
+    <!-- 自动同步 Google Sheet 与发送电邮至 g-88545190@moe-dl.edu.my 状态框 -->
+    <div class="bg-indigo-50 border-2 border-indigo-300 rounded-3xl p-4 sm:p-5 max-w-2xl mx-auto mb-6 text-left">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h3 class="text-base font-black text-indigo-950 flex items-center gap-1.5">
+            <span>📨</span>
+            <span>成绩自动汇报与 Google Sheet 存档</span>
+          </h3>
+          <p id="syncStatusText" class="text-xs sm:text-sm font-bold text-indigo-700 mt-1">
+            正在整理成绩数据并准备发送通知至 <span class="underline">g-88545190@moe-dl.edu.my</span> ...
+          </p>
+        </div>
+
+        <button onclick="sendEmailFallback()" class="btn-3d bg-indigo-600 hover:bg-indigo-700 border-2 border-indigo-800 shadow-[0_4px_0_#312E81] text-white font-extrabold px-4 py-2.5 rounded-2xl text-xs sm:text-sm shrink-0">
+          ✉️ 一键电邮通知老师
+        </button>
+      </div>
+    </div>
+
+    <!-- 错题与生字复盘明细 -->
+    <div class="text-left max-w-2xl mx-auto mb-6">
+      <h3 class="text-base font-black text-blue-950 mb-2.5">📋 本次测验答题明细（含错题记录）：</h3>
+      <div id="resultDetailList" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+        <!-- 动态生成每题记录 -->
+      </div>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-3">
+      <button onclick="restartCurrentStage()" class="btn-3d bg-emerald-500 border-2 border-emerald-700 shadow-[0_5px_0_#047857] text-white font-black px-6 py-3 rounded-2xl text-sm sm:text-base">
+        🔄 重新挑战本关卡
+      </button>
+      <button onclick="openTeacherModal()" class="btn-3d bg-amber-400 border-2 border-amber-600 shadow-[0_5px_0_#B45309] text-amber-950 font-black px-6 py-3 rounded-2xl text-sm sm:text-base">
+        📊 查看全班汇总成绩表
+      </button>
+      <button onclick="returnToHome()" class="btn-3d bg-blue-500 border-2 border-blue-700 shadow-[0_5px_0_#1D4ED8] text-white font-black px-6 py-3 rounded-2xl text-sm sm:text-base">
+        🏠 返回选择其他关卡
+      </button>
+    </div>
+  </section>
+
+  <!-- ==================== 4. 教师后台：集中 Google Sheet 汇总与电邮配置弹窗 ==================== -->
+  <div id="teacherModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white border-4 border-indigo-600 rounded-3xl p-5 sm:p-7 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-pop">
+      <div class="flex items-center justify-between border-b-2 border-indigo-100 pb-3 mb-4">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-black text-indigo-950">👩‍🏫 教师成绩汇总中心 & Google Sheet 自动接收设置</h3>
+          <p class="text-xs font-bold text-indigo-700">接收电邮：<span class="bg-indigo-100 px-2 py-0.5 rounded font-black">g-88545190@moe-dl.edu.my</span></p>
+        </div>
+        <button onclick="closeTeacherModal()" class="btn-3d bg-gray-200 border-2 border-gray-400 px-3 py-1.5 rounded-xl font-black text-gray-700">✕ 关闭</button>
+      </div>
+
+      <!-- Google Apps Script Web App URL 配置区 -->
+      <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 mb-5">
+        <h4 class="text-sm font-black text-amber-950 mb-1">🔗 自动写入同一张 Google Sheet + 自动发 Email 设置：</h4>
+        <p class="text-xs text-amber-800 font-bold mb-2.5">
+          将下方 Google Apps Script 代码部署为 Web App 后，把网址粘贴到此处，所有学生完成测验后会自动将成绩整齐追加到您的<strong>同一张 Google Sheet</strong>，并自动发邮件到 <strong>g-88545190@moe-dl.edu.my</strong>：
+        </p>
+        <div class="flex flex-col sm:flex-row gap-2 mb-3">
+          <input id="gasUrlInput" type="url" placeholder="粘贴 Google Apps Script Web App URL (https://script.google.com/macros/s/.../exec)" class="flex-1 px-3 py-2 rounded-xl border-2 border-amber-400 text-xs sm:text-sm font-bold bg-white" />
+          <button onclick="saveGasUrl()" class="btn-3d bg-emerald-600 border-2 border-emerald-800 shadow-[0_3px_0_#065F46] text-white font-black px-4 py-2 rounded-xl text-xs sm:text-sm shrink-0">
+            💾 保存连接
+          </button>
+        </div>
+
+        <details class="text-xs">
+          <summary class="cursor-pointer font-black text-indigo-700 hover:underline">📖 点击展开：30秒部署 Google Sheet + 自动发 Email 脚本代码（点击复制）</summary>
+          <div class="mt-2 relative">
+            <button onclick="copyGasScript()" class="absolute top-2 right-2 bg-indigo-600 text-white px-2.5 py-1 rounded-lg text-xs font-bold">📋 复制代码</button>
+            <textarea id="gasCodeBox" readonly rows="10" class="w-full p-3 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs leading-relaxed">function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(["提交时间", "学生姓名", "班级", "关卡单元", "总题数", "答对题数", "答错题数", "正确率(%)", "总得分", "答错生字明细"]);
+  }
+  var data = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    data.timestamp, data.studentName, data.studentClass, data.stageName,
+    data.totalQuestions, data.correctCount, data.wrongCount, data.accuracy + "%",
+    data.score, data.wrongDetails
+  ]);
+  var subject = "【Year 4 英文测验通知】" + data.studentClass + " - " + data.studentName + " (对" + data.correctCount + "题 / 错" + data.wrongCount + "题)";
+  var body = "老师您好，学生已完成 Year 4 Unit 1 互动测验：\n\n"
+    + "学生姓名：" + data.studentName + "\n"
+    + "班级：" + data.studentClass + "\n"
+    + "测验关卡：" + data.stageName + "\n"
+    + "答对题数：" + data.correctCount + " 题\n"
+    + "答错题数：" + data.wrongCount + " 题\n"
+    + "正确率：" + data.accuracy + "%\n"
+    + "总得分：" + data.score + " 分\n"
+    + "答错生字：" + (data.wrongDetails || "全对无错题！") + "\n\n"
+    + "所有成绩已自动汇总至您的 Google Sheet 表格中。";
+  MailApp.sendEmail("g-88545190@moe-dl.edu.my", subject, body);
+  return ContentService.createTextOutput(JSON.stringify({status: "success"})).setMimeType(ContentService.MimeType.JSON);
+}</textarea>
+          </div>
+        </details>
+      </div>
+
+      <!-- 本地集中汇总成绩表格（可一键导出为 CSV 导入 Google Sheet） -->
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+        <h4 class="text-base font-black text-blue-950">📊 已收集学生成绩总表（集中在一张表）：</h4>
+        <div class="flex gap-2">
+          <button onclick="exportAllRecordsCSV()" class="btn-3d bg-emerald-500 border-2 border-emerald-700 shadow-[0_3px_0_#047857] text-white font-black px-3 py-1.5 rounded-xl text-xs">
+            📥 导出总表 (Excel / Google Sheet CSV)
+          </button>
+          <button onclick="clearAllRecords()" class="btn-3d bg-rose-100 border-2 border-rose-300 text-rose-700 font-bold px-3 py-1.5 rounded-xl text-xs">
+            🗑️ 清空记录
+          </button>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto border-2 border-blue-200 rounded-2xl">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-blue-100 text-blue-950 font-black">
+              <th class="p-2.5 border-b border-blue-200">时间</th>
+              <th class="p-2.5 border-b border-blue-200">学生姓名</th>
+              <th class="p-2.5 border-b border-blue-200">班级</th>
+              <th class="p-2.5 border-b border-blue-200">关卡</th>
+              <th class="p-2.5 border-b border-blue-200 text-emerald-700">答对</th>
+              <th class="p-2.5 border-b border-blue-200 text-rose-700">答错</th>
+              <th class="p-2.5 border-b border-blue-200">正确率</th>
+              <th class="p-2.5 border-b border-blue-200">错题明细</th>
+            </tr>
+          </thead>
+          <tbody id="masterSheetTableBody" class="divide-y divide-gray-200 font-bold text-gray-700">
+            <!-- 动态渲染汇总行 -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 返回确认弹窗 -->
+  <div id="confirmModal" class="hidden fixed inset-0 bg-black/55 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+    <div class="bg-white border-4 border-blue-500 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl animate-pop">
+      <div class="text-4xl mb-2">🤔</div>
+      <h3 class="text-xl font-black text-blue-950 mb-2">确定要退出当前闯关吗？</h3>
+      <p class="text-sm text-gray-600 font-bold mb-5">退出后当前的闪卡与测验进度将不会保存哦！</p>
+      <div class="flex justify-center gap-3">
+        <button onclick="closeConfirmModal()" class="btn-3d bg-gray-200 border-2 border-gray-400 px-5 py-2 rounded-xl font-bold text-gray-800">继续学习</button>
+        <button onclick="returnToHome()" class="btn-3d bg-rose-500 border-2 border-rose-700 px-5 py-2 rounded-xl font-bold text-white">返回主页</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * ============================================================================
+     * 1. 四年级英文 Unit 1: My Country of Birth 完整 64 词课本题库 (Pages 1 - 10)
+     * ============================================================================
+     */
+    const TEACHER_EMAIL = "g-88545190@moe-dl.edu.my";
+
+    const UNIT1_VOCAB = [
+      // --- 1 - 16 ---
+      { id: 1, word: "from", cn: "来自", extra: "", displaySentence: "My mother is ___ Johor.", fullSpeech: "My mother is from Johor.", blankSpeech: "My mother is ... blank ... Johor.", enDistractors: ["after", "before", "also"], cnDistractors: ["在……之后", "在……之前", "也"] },
+      { id: 2, word: "Malaysia", cn: "马来西亚", extra: "补充词：peaceful 和平的", displaySentence: "___ is a peaceful (和平的) country (国家).", fullSpeech: "Malaysia is a peaceful country.", blankSpeech: "Blank ... is a peaceful country.", enDistractors: ["Mexico", "Brazil", "Korea"], cnDistractors: ["墨西哥", "巴西", "韩国"] },
+      { id: 3, word: "the US", cn: "美国", extra: "", displaySentence: "Encik Rahim is going to ___.", fullSpeech: "Encik Rahim is going to the US.", blankSpeech: "Encik Rahim is going to ... blank.", enDistractors: ["the UK", "China", "world"], cnDistractors: ["英国", "中国", "世界"] },
+      { id: 4, word: "the UK", cn: "英国", extra: "", displaySentence: "Peter’s brother is studying (求学) in ___.", fullSpeech: "Peter's brother is studying in the UK.", blankSpeech: "Peter's brother is studying in ... blank.", enDistractors: ["the US", "Brazil", "Mexico"], cnDistractors: ["美国", "巴西", "墨西哥"] },
+      { id: 5, word: "Mexico", cn: "墨西哥", extra: "", displaySentence: "My family will go on a holiday (假期) to ___ next week.", fullSpeech: "My family will go on a holiday to Mexico next week.", blankSpeech: "My family will go on a holiday to ... blank ... next week.", enDistractors: ["Malaysia", "Korea", "China"], cnDistractors: ["马来西亚", "韩国", "中国"] },
+      { id: 6, word: "Brazil", cn: "巴西", extra: "补充词：popular 受大众喜爱的", displaySentence: "Football is a popular (受大众喜爱的) sport (运动) in ___.", fullSpeech: "Football is a popular sport in Brazil.", blankSpeech: "Football is a popular sport in ... blank.", enDistractors: ["the UK", "China", "Korea"], cnDistractors: ["英国", "中国", "韩国"] },
+      { id: 7, word: "Korea", cn: "韩国", extra: "", displaySentence: "This toy is made in (制造于) ___.", fullSpeech: "This toy is made in Korea.", blankSpeech: "This toy is made in ... blank.", enDistractors: ["Mexico", "Brazil", "the US"], cnDistractors: ["墨西哥", "巴西", "美国"] },
+      { id: 8, word: "China", cn: "中国", extra: "", displaySentence: "They visit (参观) the Forbidden City (紫禁城) in ___.", fullSpeech: "They visit the Forbidden City in China.", blankSpeech: "They visit the Forbidden City in ... blank.", enDistractors: ["Malaysia", "the UK", "Mexico"], cnDistractors: ["马来西亚", "英国", "墨西哥"] },
+      { id: 9, word: "world", cn: "世界", extra: "", displaySentence: "Mr Wong has been to many countries (国家) around the ___.", fullSpeech: "Mr Wong has been to many countries around the world.", blankSpeech: "Mr Wong has been to many countries around the ... blank.", enDistractors: ["museum", "club", "weekends"], cnDistractors: ["博物馆", "学会", "周末"] },
+      { id: 10, word: "alone", cn: "单独", extra: "", displaySentence: "I walk to the bookshop (书店) ___.", fullSpeech: "I walk to the bookshop alone.", blankSpeech: "I walk to the bookshop ... blank.", enDistractors: ["always", "never", "instead"], cnDistractors: ["总是", "从不", "而不是"] },
+      { id: 11, word: "respect", cn: "尊敬", extra: "", displaySentence: "We should ___ our teachers.", fullSpeech: "We should respect our teachers.", blankSpeech: "We should ... blank ... our teachers.", enDistractors: ["embrace", "meet", "go home"], cnDistractors: ["欣然接受", "与……会面", "回家"] },
+      { id: 12, word: "cultures", cn: "文化", extra: "补充词：variety 多种多样", displaySentence: "Malaysia has a variety of (多种多样的) races (种族) and ___.", fullSpeech: "Malaysia has a variety of races and cultures.", blankSpeech: "Malaysia has a variety of races and ... blank.", enDistractors: ["weekends", "homework", "email"], cnDistractors: ["周末", "功课", "电子邮件"] },
+      { id: 13, word: "British", cn: "英国人", extra: "", displaySentence: "Susan is from the UK so she is ___.", fullSpeech: "Susan is from the UK so she is British.", blankSpeech: "Susan is from the UK so she is ... blank.", enDistractors: ["American", "Mexican", "Brazilian"], cnDistractors: ["美国人", "墨西哥人", "巴西人"] },
+      { id: 14, word: "Mexican", cn: "墨西哥人", extra: "", displaySentence: "Maria and her family are ___.", fullSpeech: "Maria and her family are Mexican.", blankSpeech: "Maria and her family are ... blank.", enDistractors: ["Malaysian", "Korean", "Chinese"], cnDistractors: ["马来西亚人", "韩国人", "中国人"] },
+      { id: 15, word: "Brazilian", cn: "巴西人", extra: "", displaySentence: "Saiful made a ___ friend on the Internet (互联网).", fullSpeech: "Saiful made a Brazilian friend on the Internet.", blankSpeech: "Saiful made a ... blank ... friend on the Internet.", enDistractors: ["British", "Chinese", "Korean"], cnDistractors: ["英国人", "中国人", "韩国人"] },
+      { id: 16, word: "American", cn: "美国人", extra: "", displaySentence: "Simon is an ___.", fullSpeech: "Simon is an American.", blankSpeech: "Simon is an ... blank.", enDistractors: ["Malaysian", "British", "Mexican"], cnDistractors: ["马来西亚人", "英国人", "墨西哥人"] },
+
+      // --- 17 - 32 ---
+      { id: 17, word: "school trip", cn: "学校旅行", extra: "", displaySentence: "We are going on a ___ to the zoo (动物园).", fullSpeech: "We are going on a school trip to the zoo.", blankSpeech: "We are going on a ... blank ... to the zoo.", enDistractors: ["TV show", "pen pal", "table tennis"], cnDistractors: ["电视节目", "笔友", "乒乓球"] },
+      { id: 18, word: "museum", cn: "博物馆", extra: "补充词：historical items 历史物件", displaySentence: "There are many historical items (历史物件) at the ___.", fullSpeech: "There are many historical items at the museum.", blankSpeech: "There are many historical items at the ... blank.", enDistractors: ["ice-skating rink", "world", "club"], cnDistractors: ["溜冰场", "世界", "学会"] },
+      { id: 19, word: "alive", cn: "活着", extra: "反义词 (Antonym)：dead 死的", displaySentence: "My grandparents (祖父母) are ___ and well (健康的).", fullSpeech: "My grandparents are alive and well.", blankSpeech: "My grandparents are ... blank ... and well.", enDistractors: ["great", "favourite", "alone"], cnDistractors: ["优秀的", "最喜欢的", "单独"] },
+      { id: 20, word: "embrace", cn: "欣然接受", extra: "同义词：accept 接受 | 反义词：reject 拒绝", displaySentence: "We should ___ friends from other cultures (文化).", fullSpeech: "We should embrace friends from other cultures.", blankSpeech: "We should ... blank ... friends from other cultures.", enDistractors: ["respect", "meet", "ice-skate"], cnDistractors: ["尊敬", "与……会面", "溜冰"] },
+      { id: 21, word: "Korean", cn: "韩国人", extra: "", displaySentence: "Liyana’s best friend, Ha Na, is ___.", fullSpeech: "Liyana's best friend, Ha Na, is Korean.", blankSpeech: "Liyana's best friend, Ha Na, is ... blank.", enDistractors: ["Malaysian", "British", "American"], cnDistractors: ["马来西亚人", "英国人", "美国人"] },
+      { id: 22, word: "Malaysian", cn: "马来西亚人", extra: "", displaySentence: "Puan Rosita is a ___.", fullSpeech: "Puan Rosita is a Malaysian.", blankSpeech: "Puan Rosita is a ... blank.", enDistractors: ["Mexican", "Brazilian", "Korean"], cnDistractors: ["墨西哥人", "巴西人", "韩国人"] },
+      { id: 23, word: "Chinese", cn: "中国人", extra: "", displaySentence: "Tania’s mother is ___.", fullSpeech: "Tania's mother is Chinese.", blankSpeech: "Tania's mother is ... blank.", enDistractors: ["British", "American", "Brazilian"], cnDistractors: ["英国人", "美国人", "巴西人"] },
+      { id: 24, word: "ice-skating rink", cn: "溜冰场", extra: "", displaySentence: "The children are at the ___.", fullSpeech: "The children are at the ice-skating rink.", blankSpeech: "The children are at the ... blank.", enDistractors: ["museum", "school trip", "chess player"], cnDistractors: ["博物馆", "学校旅行", "棋手"] },
+      { id: 25, word: "ice-skate", cn: "溜冰", extra: "", displaySentence: "Gina learns (学习) to ___ with the help of a teacher.", fullSpeech: "Gina learns to ice-skate with the help of a teacher.", blankSpeech: "Gina learns to ... blank ... with the help of a teacher.", enDistractors: ["play chess", "go home", "get up"], cnDistractors: ["下棋", "回家", "起床"] },
+      { id: 26, word: "play chess", cn: "下棋", extra: "", displaySentence: "Shaun and Yik Ming ___ together (一起).", fullSpeech: "Shaun and Yik Ming play chess together.", blankSpeech: "Shaun and Yik Ming ... blank ... together.", enDistractors: ["play badminton", "goes to bed", "watches TV"], cnDistractors: ["打羽毛球", "睡觉", "看电视"] },
+      { id: 27, word: "figure skater", cn: "花样滑冰运动员", extra: "", displaySentence: "Helen wants to be a ___ when she grows up (长大).", fullSpeech: "Helen wants to be a figure skater when she grows up.", blankSpeech: "Helen wants to be a ... blank ... when she grows up.", enDistractors: ["chess player", "actor", "pen pal"], cnDistractors: ["棋手", "演员", "笔友"] },
+      { id: 28, word: "usually", cn: "通常", extra: "同义词：normally 一般上 | 反义词：rarely 很少", displaySentence: "She ___ takes the bus (乘搭巴士) home.", fullSpeech: "She usually takes the bus home.", blankSpeech: "She ... blank ... takes the bus home.", enDistractors: ["never", "instead", "before"], cnDistractors: ["从不", "而不是", "在……之前"] },
+      { id: 29, word: "after", cn: "在……之后", extra: "反义词 (Antonym)：before 在……之前", displaySentence: "___ school, Kai Lin goes to a restaurant (餐馆) with her friends.", fullSpeech: "After school, Kai Lin goes to a restaurant with her friends.", blankSpeech: "Blank ... school, Kai Lin goes to a restaurant with her friends.", enDistractors: ["Before", "Always", "Also"], cnDistractors: ["在……之前", "总是", "也"] },
+      { id: 30, word: "homework", cn: "功课", extra: "", displaySentence: "Hakim does his ___ after dinner (晚餐).", fullSpeech: "Hakim does his homework after dinner.", blankSpeech: "Hakim does his ... blank ... after dinner.", enDistractors: ["sport", "email", "surprise"], cnDistractors: ["体育运动", "电子邮件", "惊喜"] },
+      { id: 31, word: "sometimes", cn: "有时", extra: "同义词 (Synonym)：occasionally 偶尔", displaySentence: "She ___ waters (浇水) the plants (植物) in the morning.", fullSpeech: "She sometimes waters the plants in the morning.", blankSpeech: "She ... blank ... waters the plants in the morning.", enDistractors: ["from", "after", "great"], cnDistractors: ["来自", "在……之后", "优秀的"] },
+      { id: 32, word: "watches TV", cn: "看电视", extra: "", displaySentence: "Ryan ___ every Saturday morning.", fullSpeech: "Ryan watches TV every Saturday morning.", blankSpeech: "Ryan ... blank ... every Saturday morning.", enDistractors: ["goes to bed", "play chess", "riding a bike"], cnDistractors: ["睡觉", "下棋", "骑自行车"] },
+
+      // --- 33 - 48 ---
+      { id: 33, word: "always", cn: "总是", extra: "频率：100% 总是 (Adverbs of Frequency)", displaySentence: "I ___ wash my hands before (在……之前) I eat my meals (餐食).", fullSpeech: "I always wash my hands before I eat my meals.", blankSpeech: "I ... blank ... wash my hands before I eat my meals.", enDistractors: ["never", "alone", "instead"], cnDistractors: ["从不", "单独", "而不是"] },
+      { id: 34, word: "goes to bed", cn: "睡觉", extra: "", displaySentence: "Susan ___ at ten o’clock (十点钟).", fullSpeech: "Susan goes to bed at ten o'clock.", blankSpeech: "Susan ... blank ... at ten o'clock.", enDistractors: ["watches TV", "get up", "go home"], cnDistractors: ["看电视", "起床", "回家"] },
+      { id: 35, word: "chess player", cn: "棋手", extra: "补充词：famous 著名的", displaySentence: "The famous (著名的) ___ has won (赢了) many competitions (比赛).", fullSpeech: "The famous chess player has won many competitions.", blankSpeech: "The famous ... blank ... has won many competitions.", enDistractors: ["figure skater", "actor", "pen pal"], cnDistractors: ["花样滑冰运动员", "演员", "笔友"] },
+      { id: 36, word: "go home", cn: "回家", extra: "", displaySentence: "I ___ after school is over (结束).", fullSpeech: "I go home after school is over.", blankSpeech: "I ... blank ... after school is over.", enDistractors: ["get up", "play chess", "ice-skate"], cnDistractors: ["起床", "下棋", "溜冰"] },
+      { id: 37, word: "club", cn: "学会", extra: "", displaySentence: "Henry is in the choir (合唱团) ___.", fullSpeech: "Henry is in the choir club.", blankSpeech: "Henry is in the choir ... blank.", enDistractors: ["museum", "world", "email"], cnDistractors: ["博物馆", "世界", "电子邮件"] },
+      { id: 38, word: "engage in hobbies", cn: "参与业余爱好", extra: "", displaySentence: "It is important (重要的) to ___ to stay healthy (保持健康).", fullSpeech: "It is important to engage in hobbies to stay healthy.", blankSpeech: "It is important to ... blank ... to stay healthy.", enDistractors: ["play badminton", "riding a bike", "doing karate"], cnDistractors: ["打羽毛球", "骑自行车", "练空手道"] },
+      { id: 39, word: "football", cn: "足球", extra: "", displaySentence: "Thomas and his cousins (堂/表兄弟姐妹) play ___ together (一起).", fullSpeech: "Thomas and his cousins play football together.", blankSpeech: "Thomas and his cousins play ... blank ... together.", enDistractors: ["volleyball", "baseball", "table tennis"], cnDistractors: ["排球", "棒球", "乒乓球"] },
+      { id: 40, word: "play badminton", cn: "打羽毛球", extra: "", displaySentence: "Soo Yin and Yati ___ in the evenings.", fullSpeech: "Soo Yin and Yati play badminton in the evenings.", blankSpeech: "Soo Yin and Yati ... blank ... in the evenings.", enDistractors: ["play chess", "goes to bed", "go home"], cnDistractors: ["下棋", "睡觉", "回家"] },
+      { id: 41, word: "before", cn: "在……之前", extra: "反义词 (Antonym)：after 在……之后", displaySentence: "I wash my face and brush my teeth (刷牙) ___ I eat breakfast (早餐).", fullSpeech: "I wash my face and brush my teeth before I eat breakfast.", blankSpeech: "I wash my face and brush my teeth ... blank ... I eat breakfast.", enDistractors: ["after", "never", "always"], cnDistractors: ["在……之后", "从不", "总是"] },
+      { id: 42, word: "never", cn: "从不", extra: "频率：0% 从不 (Adverbs of Frequency)", displaySentence: "Preeta ___ plays computer games (电脑游戏) on Mondays.", fullSpeech: "Preeta never plays computer games on Mondays.", blankSpeech: "Preeta ... blank ... plays computer games on Mondays.", enDistractors: ["always", "usually", "sometimes"], cnDistractors: ["总是", "通常", "有时"] },
+      { id: 43, word: "skateboarding", cn: "滑板运动", extra: "", displaySentence: "Sam goes ___ at the park (公园) in the evening.", fullSpeech: "Sam goes skateboarding at the park in the evening.", blankSpeech: "Sam goes ... blank ... at the park in the evening.", enDistractors: ["swimming", "exercising", "homework"], cnDistractors: ["游泳", "运动", "功课"] },
+      { id: 44, word: "get up", cn: "起床", extra: "补充词：get ready 准备", displaySentence: "Susan has to ___ early (早) in the morning and get ready (准备) for school.", fullSpeech: "Susan has to get up early in the morning and get ready for school.", blankSpeech: "Susan has to ... blank ... early in the morning and get ready for school.", enDistractors: ["go home", "goes to bed", "meet"], cnDistractors: ["回家", "睡觉", "与……会面"] },
+      { id: 45, word: "swimming", cn: "游泳", extra: "", displaySentence: "Daniel goes ___ on Wednesdays.", fullSpeech: "Daniel goes swimming on Wednesdays.", blankSpeech: "Daniel goes ... blank ... on Wednesdays.", enDistractors: ["skateboarding", "exercising", "cultures"], cnDistractors: ["滑板运动", "运动", "文化"] },
+      { id: 46, word: "doing karate", cn: "练空手道", extra: "补充词：dojo 武术馆", displaySentence: "Eng Hock is ___ at the dojo (武术馆).", fullSpeech: "Eng Hock is doing karate at the dojo.", blankSpeech: "Eng Hock is ... blank ... at the dojo.", enDistractors: ["riding a bike", "play chess", "watches TV"], cnDistractors: ["骑自行车", "下棋", "看电视"] },
+      { id: 47, word: "exercising", cn: "运动", extra: "", displaySentence: "She started (开始) ___ every day to keep fit (保持健康).", fullSpeech: "She started exercising every day to keep fit.", blankSpeech: "She started ... blank ... every day to keep fit.", enDistractors: ["skateboarding", "swimming", "weekends"], cnDistractors: ["滑板运动", "游泳", "周末"] },
+      { id: 48, word: "riding a bike", cn: "骑自行车", extra: "", displaySentence: "Xiao Ling is ___ to school.", fullSpeech: "Xiao Ling is riding a bike to school.", blankSpeech: "Xiao Ling is ... blank ... to school.", enDistractors: ["doing karate", "play badminton", "school trip"], cnDistractors: ["练空手道", "打羽毛球", "学校旅行"] },
+
+      // --- 49 - 64 ---
+      { id: 49, word: "favourite", cn: "最喜欢的", extra: "", displaySentence: "Lan Jie’s ___ sport (运动) is badminton (羽毛球).", fullSpeech: "Lan Jie's favourite sport is badminton.", blankSpeech: "Lan Jie's ... blank ... sport is badminton.", enDistractors: ["alive", "alone", "British"], cnDistractors: ["活着", "单独", "英国人"] },
+      { id: 50, word: "sport", cn: "体育运动", extra: "", displaySentence: "Diana likes to play ___.", fullSpeech: "Diana likes to play sport.", blankSpeech: "Diana likes to play ... blank.", enDistractors: ["email", "surprise", "family"], cnDistractors: ["电子邮件", "惊喜", "家人"] },
+      { id: 51, word: "email", cn: "电子邮件", extra: "", displaySentence: "Gina sends (寄/发) an ___ to her cousin (堂/表兄妹) about her holiday (假期).", fullSpeech: "Gina sends an email to her cousin about her holiday.", blankSpeech: "Gina sends an ... blank ... to her cousin about her holiday.", enDistractors: ["actor", "ice-skating rink", "club"], cnDistractors: ["演员", "溜冰场", "学会"] },
+      { id: 52, word: "pen pal", cn: "笔友", extra: "补充词：Australia 澳洲", displaySentence: "Boon Kit’s ___ lives in Australia (澳洲).", fullSpeech: "Boon Kit's pen pal lives in Australia.", blankSpeech: "Boon Kit's ... blank ... lives in Australia.", enDistractors: ["TV show", "school trip", "table tennis"], cnDistractors: ["电视节目", "学校旅行", "乒乓球"] },
+      { id: 53, word: "family", cn: "家人", extra: "", displaySentence: "Julia and her ___ are playing a board game (棋盘游戏).", fullSpeech: "Julia and her family are playing a board game.", blankSpeech: "Julia and her ... blank ... are playing a board game.", enDistractors: ["museum", "homework", "world"], cnDistractors: ["博物馆", "功课", "世界"] },
+      { id: 54, word: "surprise", cn: "惊喜", extra: "", displaySentence: "Peter had a wonderful (极好的) ___ on his birthday (生日).", fullSpeech: "Peter had a wonderful surprise on his birthday.", blankSpeech: "Peter had a wonderful ... blank ... on his birthday.", enDistractors: ["homework", "sport", "club"], cnDistractors: ["功课", "体育运动", "学会"] },
+      { id: 55, word: "actor", cn: "演员", extra: "补充词：autograph (名人的)亲笔签名", displaySentence: "She gets an autograph (亲笔签名) from her favourite (最喜欢的) ___.", fullSpeech: "She gets an autograph from her favourite actor.", blankSpeech: "She gets an autograph from her favourite ... blank.", enDistractors: ["figure skater", "chess player", "museum"], cnDistractors: ["花样滑冰运动员", "棋手", "博物馆"] },
+      { id: 56, word: "also", cn: "也", extra: "", displaySentence: "Besides (除了) playing football, Paolo ___ enjoys (喜欢) playing chess (下棋).", fullSpeech: "Besides playing football, Paolo also enjoys playing chess.", blankSpeech: "Besides playing football, Paolo ... blank ... enjoys playing chess.", enDistractors: ["never", "from", "before"], cnDistractors: ["从不", "来自", "在……之前"] },
+      { id: 57, word: "table tennis", cn: "乒乓球", extra: "", displaySentence: "The girls are playing ___.", fullSpeech: "The girls are playing table tennis.", blankSpeech: "The girls are playing ... blank.", enDistractors: ["school trip", "pen pal", "TV show"], cnDistractors: ["学校旅行", "笔友", "电视节目"] },
+      { id: 58, word: "weekends", cn: "周末", extra: "", displaySentence: "My family goes out to eat at ___.", fullSpeech: "My family goes out to eat at weekends.", blankSpeech: "My family goes out to eat at ... blank.", enDistractors: ["cultures", "homework", "email"], cnDistractors: ["文化", "功课", "电子邮件"] },
+      { id: 59, word: "TV show", cn: "电视节目", extra: "补充词：airs 播出", displaySentence: "Lisa’s favourite (最喜欢的) ___ airs (播出) every Thursday evening.", fullSpeech: "Lisa's favourite TV show airs every Thursday evening.", blankSpeech: "Lisa's favourite ... blank ... airs every Thursday evening.", enDistractors: ["school trip", "pen pal", "chess player"], cnDistractors: ["学校旅行", "笔友", "棋手"] },
+      { id: 60, word: "great", cn: "优秀的", extra: "", displaySentence: "Our school basketball team (篮球队) has ___ players (队员).", fullSpeech: "Our school basketball team has great players.", blankSpeech: "Our school basketball team has ... blank ... players.", enDistractors: ["alive", "alone", "Korean"], cnDistractors: ["活着", "单独", "韩国人"] },
+      { id: 61, word: "meet", cn: "与……会面", extra: "", displaySentence: "I will ___ Wei Jin at his house.", fullSpeech: "I will meet Wei Jin at his house.", blankSpeech: "I will ... blank ... Wei Jin at his house.", enDistractors: ["respect", "embrace", "ice-skate"], cnDistractors: ["尊敬", "欣然接受", "溜冰"] },
+      { id: 62, word: "instead", cn: "而不是", extra: "补充词：cinema 电影院", displaySentence: "He decides (决定) to study (温习) today ___ of going to the cinema (电影院).", fullSpeech: "He decides to study today instead of going to the cinema.", blankSpeech: "He decides to study today ... blank ... of going to the cinema.", enDistractors: ["always", "usually", "sometimes"], cnDistractors: ["总是", "通常", "有时"] },
+      { id: 63, word: "volleyball", cn: "排球", extra: "", displaySentence: "Nancy is learning (学习) how to play ___.", fullSpeech: "Nancy is learning how to play volleyball.", blankSpeech: "Nancy is learning how to play ... blank.", enDistractors: ["baseball", "football", "chess player"], cnDistractors: ["棒球", "足球", "棋手"] },
+      { id: 64, word: "baseball", cn: "棒球", extra: "", displaySentence: "Ryan got to watch a ___ match (比赛) when he was in the US.", fullSpeech: "Ryan got to watch a baseball match when he was in the US.", blankSpeech: "Ryan got to watch a ... blank ... match when he was in the US.", enDistractors: ["volleyball", "football", "homework"], cnDistractors: ["排球", "足球", "功课"] }
+    ];
+
+    const STAGE_NAMES = {
+      stage1: "第 1 关：国家与国籍 (1-16)",
+      stage2: "第 2 关：学校与日常 (17-32)",
+      stage3: "第 3 关：频率与运动 (33-48)",
+      stage4: "第 4 关：爱好与交际 (49-64)",
+      quick10: "随堂精选 10 题快测",
+      all64: "Unit 1 全套 64 词总复习"
+    };
+
+    /**
+     * ============================================================================
+     * 2. 全局状态管理
+     * ============================================================================
+     */
+    let studentName = "";
+    let studentClass = "4M";
+    let currentStageKey = "stage1";
+    let activeList = [];
+
+    // Flashcard 状态
+    let fcIndex = 0;
+    let fcCompletedSet = new Set(); // 记录已看满5秒的卡片索引
+    let fcSecondsLeft = 5;
+    let fcCountdownInterval = null;
+    let isQuizUnlocked = false;
+
+    // Quiz 状态
+    let quizQuestions = [];
+    let qIndex = 0;
+    let qStep = 1; // 1 = 选英文填空, 2 = 选华语意思
+    let qLocked = true; // 句子读完前锁定
+    let qTimeLeft = 20;
+    const Q_TOTAL_TIME = 20;
+    let qTimerInterval = null;
+    let speechSafetyTimer = null;
+
+    // 成绩统计
+    let score = 0;
+    let rightCount = 0;
+    let wrongCount = 0;
+    let currentQHadMistake = false;
+    let quizLogs = []; // 每题明细
+
+    /**
+     * ============================================================================
+     * 3. Web Audio API 动态背景音乐（正常欢快旋律 + 倒计时紧张急促模式）与音效
+     * ============================================================================
+     */
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+    let bgmEnabled = true;
+    let bgmLoopTimer = null;
+    let bgmStep = 0;
+    let isTensionMode = false;
+
+    function ensureAudioCtx() {
+      if (!audioCtx) audioCtx = new AudioCtx();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playNote(freq, duration, type = 'sine', vol = 0.08, delay = 0) {
+      if (!bgmEnabled) return;
+      try {
+        ensureAudioCtx();
+        const now = audioCtx.currentTime + delay;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, now);
+        gain.gain.setValueAtTime(vol, now);
+        gain.gain.exponentialRampToValueAtTime(0.0008, now + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + duration);
+      } catch (e) {}
+    }
+
+    // 欢快日常循环旋律 (C大调童趣木琴)
+    const CALM_MELODY = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 880.00, 698.46];
+    // 紧张模式旋律 (小调急促脉冲 + 心跳低音)
+    const TENSION_MELODY = [440.00, 466.16, 440.00, 523.25, 440.00, 466.16, 587.33, 622.25];
+
+    function startBGM() {
+      stopBGM();
+      if (!bgmEnabled) return;
+
+      const tickBGM = () => {
+        if (!bgmEnabled) return;
+        // 如果正在语音朗读句子，降低背景音乐音量避免干扰听力
+        const isSpeaking = ('speechSynthesis' in window) && window.speechSynthesis.speaking;
+        const volScale = isSpeaking ? 0.25 : 1.0;
+
+        if (isTensionMode) {
+          // 紧张模式：急促心跳低音 + 高音紧迫感
+          const note = TENSION_MELODY[bgmStep % TENSION_MELODY.length];
+          playNote(note, 0.14, 'triangle', 0.065 * volScale);
+          if (bgmStep % 2 === 0) {
+            playNote(110, 0.12, 'sawtooth', 0.07 * volScale); // 心跳重低音
+          }
+          bgmStep++;
+          const nextDelay = qTimeLeft <= 3.5 ? 180 : 250; // 最后3秒更快！
+          bgmLoopTimer = setTimeout(tickBGM, nextDelay);
+        } else {
+          // 正常模式：轻快愉悦节拍
+          const note = CALM_MELODY[bgmStep % CALM_MELODY.length];
+          playNote(note, 0.28, 'sine', 0.045 * volScale);
+          if (bgmStep % 4 === 0) {
+            playNote(261.63, 0.35, 'triangle', 0.035 * volScale);
+          }
+          bgmStep++;
+          bgmLoopTimer = setTimeout(tickBGM, 460);
+        }
+      };
+
+      tickBGM();
+    }
+
+    function stopBGM() {
+      if (bgmLoopTimer) {
+        clearTimeout(bgmLoopTimer);
+        bgmLoopTimer = null;
+      }
+    }
+
+    function toggleBGM() {
+      bgmEnabled = !bgmEnabled;
+      document.getElementById('bgmIcon').textContent = bgmEnabled ? '🎵' : '🔇';
+      document.getElementById('bgmText').textContent = bgmEnabled ? '音乐开' : '音乐关';
+      if (bgmEnabled) {
+        ensureAudioCtx();
+        startBGM();
+      } else {
+        stopBGM();
+      }
+    }
+
+    function playSFX(kind) {
+      if (!bgmEnabled) return;
+      if (kind === 'unlock') {
+        playNote(587.33, 0.12, 'triangle', 0.14, 0);
+        playNote(880.00, 0.2, 'triangle', 0.14, 0.1);
+      } else if (kind === 'step1') {
+        playNote(523.25, 0.14, 'triangle', 0.16, 0);
+        playNote(659.25, 0.2, 'triangle', 0.16, 0.11);
+      } else if (kind === 'win') {
+        playNote(523.25, 0.14, 'sine', 0.18, 0);
+        playNote(659.25, 0.14, 'sine', 0.18, 0.1);
+        playNote(783.99, 0.14, 'sine', 0.18, 0.2);
+        playNote(1046.5, 0.32, 'triangle', 0.2, 0.3);
+      } else if (kind === 'wrong') {
+        playNote(196.00, 0.18, 'sawtooth', 0.14, 0);
+        playNote(164.81, 0.25, 'sawtooth', 0.14, 0.14);
+      }
+    }
+
+    /**
+     * ============================================================================
+     * 4. 英文语音朗读 (TTS)
+     * ============================================================================
+     */
+    function speakText(text, onEndCallback = null) {
+      clearTimeout(speechSafetyTimer);
+
+      if (!('speechSynthesis' in window)) {
+        speechSafetyTimer = setTimeout(() => { if (onEndCallback) onEndCallback(); }, 1800);
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-GB';
+      utter.rate = parseFloat(document.getElementById('speechRateSelect').value) || 0.85;
+      utter.pitch = 1.05;
+
+      const voices = window.speechSynthesis.getVoices();
+      const bestVoice = voices.find(v => (v.lang.includes('en-GB') || v.lang.includes('en-US')) && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha')))
+                        || voices.find(v => v.lang.startsWith('en'));
+      if (bestVoice) utter.voice = bestVoice;
+
+      let called = false;
+      const finish = () => {
+        if (called) return;
+        called = true;
+        clearTimeout(speechSafetyTimer);
+        if (onEndCallback) onEndCallback();
+      };
+
+      utter.onend = finish;
+      utter.onerror = finish;
+      speechSafetyTimer = setTimeout(finish, Math.max(2400, text.length * 115));
+
+      window.speechSynthesis.speak(utter);
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+
+    /**
+     * ============================================================================
+     * 5. 启动与关卡初始化
+     * ============================================================================
+     */
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function formatSentenceWithHints(rawSentence, filledWord = null) {
+      let html = rawSentence.replace(/\(([^)]+)\)/g, '<span class="hint-cn">($1)</span>');
+      if (filledWord) {
+        html = html.replace('___', `<span class="blank-slot filled animate-pop">${filledWord}</span>`);
+      } else {
+        html = html.replace('___', `<span class="blank-slot">? ? ?</span>`);
+      }
+      return html;
+    }
+
+    function validateAndStart(stageKey) {
+      const nameVal = document.getElementById('studentNameInput').value.trim();
+      const classVal = document.getElementById('studentClassInput').value;
+      const errEl = document.getElementById('loginErrorMsg');
+
+      if (!nameVal) {
+        errEl.classList.remove('hidden');
+        document.getElementById('studentNameInput').focus();
+        return;
+      }
+      errEl.classList.add('hidden');
+
+      studentName = nameVal;
+      studentClass = classVal;
+      currentStageKey = stageKey;
+
+      ensureAudioCtx();
+      isTensionMode = false;
+      startBGM();
+
+      // 筛选当前关卡生字
+      if (stageKey === 'stage1') activeList = UNIT1_VOCAB.slice(0, 16);
+      else if (stageKey === 'stage2') activeList = UNIT1_VOCAB.slice(16, 32);
+      else if (stageKey === 'stage3') activeList = UNIT1_VOCAB.slice(32, 48);
+      else if (stageKey === 'stage4') activeList = UNIT1_VOCAB.slice(48, 64);
+      else if (stageKey === 'quick10') activeList = shuffle(UNIT1_VOCAB).slice(0, 10);
+      else activeList = [...UNIT1_VOCAB];
+
+      // 重置 Flashcard 与 Quiz 状态
+      fcIndex = 0;
+      fcCompletedSet.clear();
+      isQuizUnlocked = false;
+
+      score = 0;
+      rightCount = 0;
+      wrongCount = 0;
+      quizLogs = [];
+
+      // 切换界面
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('resultScreen').classList.add('hidden');
+      document.getElementById('workspaceScreen').classList.remove('hidden');
+      document.getElementById('homeBtn').classList.remove('hidden');
+
+      // 锁定右边 Quiz 面板
+      document.getElementById('quizLockOverlay').classList.remove('hidden');
+      document.getElementById('overlayFcCount').textContent = `0 / ${activeList.length}`;
+      document.getElementById('fcAllDoneBanner').classList.add('hidden');
+
+      // 加载第一张 Flashcard
+      renderFlashcard();
+    }
+
+    /**
+     * ============================================================================
+     * 6. 左边 Flashcard 控制逻辑 (每张必须学习满 5 秒才能下一张)
+     * ============================================================================
+     */
+    function renderFlashcard() {
+      clearInterval(fcCountdownInterval);
+      const item = activeList[fcIndex];
+      const total = activeList.length;
+
+      document.getElementById('fcProgressBadge').textContent = `${fcIndex + 1} / ${total}`;
+      document.getElementById('fcNumberTag').textContent = `课本第 #${item.id} 词`;
+      document.getElementById('fcWord').textContent = item.word;
+      document.getElementById('fcMeaning').textContent = item.cn;
+
+      const extraEl = document.getElementById('fcExtraNotes');
+      if (item.extra) {
+        extraEl.textContent = `📌 ${item.extra}`;
+        extraEl.classList.remove('hidden');
+      } else {
+        extraEl.classList.add('hidden');
+      }
+
+      document.getElementById('fcSentence').innerHTML = formatSentenceWithHints(item.displaySentence, item.word);
+
+      // 上一张按钮状态
+      document.getElementById('fcPrevBtn').disabled = (fcIndex === 0);
+
+      // 更新进度条
+      const pct = Math.round(((fcCompletedSet.size) / total) * 100);
+      document.getElementById('fcProgressBar').style.width = `${Math.max(6, pct)}%`;
+
+      // 朗读当前闪卡生字及例句
+      speakText(`${item.word}. ${item.fullSpeech}`);
+
+      const nextBtn = document.getElementById('fcNextBtn');
+      const nextBtnText = document.getElementById('fcNextBtnText');
+
+      // 如果这张卡片已经看满过 5 秒，直接允许翻下一张
+      if (fcCompletedSet.has(fcIndex)) {
+        nextBtn.disabled = false;
+        nextBtnText.textContent = (fcIndex === total - 1)
+          ? (isQuizUnlocked ? "✅ 已全部学完（去右边测验）" : "🔓 完成闪卡，解锁测验！")
+          : "➡️ 下一张闪卡";
+        return;
+      }
+
+      // 强制 5 秒学习倒计时
+      fcSecondsLeft = 5;
+      nextBtn.disabled = true;
+      nextBtnText.textContent = `⏳ 请仔细学习 (${fcSecondsLeft}s)`;
+
+      fcCountdownInterval = setInterval(() => {
+        fcSecondsLeft--;
+        if (fcSecondsLeft > 0) {
+          nextBtnText.textContent = `⏳ 请仔细学习 (${fcSecondsLeft}s)`;
+        } else {
+          clearInterval(fcCountdownInterval);
+          fcCompletedSet.add(fcIndex);
+          playSFX('unlock');
+
+          const doneCount = fcCompletedSet.size;
+          document.getElementById('overlayFcCount').textContent = `${doneCount} / ${total}`;
+          document.getElementById('fcProgressBar').style.width = `${Math.round((doneCount / total) * 100)}%`;
+
+          nextBtn.disabled = false;
+          if (fcIndex === total - 1 && doneCount === total) {
+            nextBtnText.textContent = "🎉 解锁右边 Quiz 测验！";
+          } else {
+            nextBtnText.textContent = "➡️ 下一张闪卡";
+          }
+        }
+      }, 1000);
+    }
+
+    function pronounceCurrentFlashcard() {
+      const item = activeList[fcIndex];
+      speakText(`${item.word}. ${item.fullSpeech}`);
+    }
+
+    function prevFlashcard() {
+      if (fcIndex > 0) {
+        fcIndex--;
+        renderFlashcard();
+      }
+    }
+
+    function nextFlashcard() {
+      if (!fcCompletedSet.has(fcIndex)) return;
+
+      if (fcIndex < activeList.length - 1) {
+        fcIndex++;
+        renderFlashcard();
+      } else {
+        // 已看完最后一张闪卡，检查是否全部看完并解锁右边 Quiz！
+        if (fcCompletedSet.size === activeList.length && !isQuizUnlocked) {
+          unlockRightQuiz();
+        }
+      }
+    }
+
+    function unlockRightQuiz() {
+      isQuizUnlocked = true;
+      playSFX('win');
+      document.getElementById('quizLockOverlay').classList.add('hidden');
+      document.getElementById('fcAllDoneBanner').classList.remove('hidden');
+      document.getElementById('fcNextBtnText').textContent = "✅ 已全部学完";
+
+      // 打乱题序开始右边 Quiz
+      quizQuestions = shuffle(activeList);
+      qIndex = 0;
+      loadQuizQuestion();
+    }
+
+    /**
+     * ============================================================================
+     * 7. 右边 Quiz 逻辑 (读完句子才解锁 + 20秒倒计时 + 紧张音乐 + 双步作答)
+     * ============================================================================
+     */
+    function loadQuizQuestion() {
+      stopQuizTimer();
+      isTensionMode = false;
+      document.getElementById('rightQuizPanel').classList.remove('tension-border');
+
+      const q = quizQuestions[qIndex];
+      qStep = 1;
+      qLocked = true;
+      qTimeLeft = Q_TOTAL_TIME;
+      currentQHadMistake = false;
+
+      document.getElementById('qIndexDisplay').textContent = qIndex + 1;
+      document.getElementById('qTotalDisplay').textContent = quizQuestions.length;
+      document.getElementById('liveRightCount').textContent = rightCount;
+      document.getElementById('liveWrongCount').textContent = wrongCount;
+
+      updateStepUI(1);
+      updateQuizTimerUI(Q_TOTAL_TIME, true);
+
+      // 渲染带括弧提示的句子
+      document.getElementById('sentenceContainer').innerHTML = formatSentenceWithHints(q.displaySentence, null);
+      document.getElementById('feedbackBanner').classList.add('hidden');
+
+      // 渲染第一步英文选项（锁定状态）
+      renderQuizOptions(1, true);
+      setQuizAudioLock(true);
+
+      // 自动朗读句子，必须等读完后才解锁按钮和启动20秒倒计时
+      speakText(q.blankSpeech, () => {
+        if (qLocked && qStep === 1) {
+          setQuizAudioLock(false);
+          startQuizTimer();
+        }
+      });
+    }
+
+    function setQuizAudioLock(locked) {
+      qLocked = locked;
+      document.querySelectorAll('#optionsGrid button').forEach(b => b.disabled = locked);
+
+      const wave = document.getElementById('soundWaveAnim');
+      const notice = document.getElementById('audioLockNotice');
+      const badge = document.getElementById('lockBadge');
+
+      if (locked) {
+        wave.classList.remove('opacity-20');
+        notice.textContent = "🔊 正在朗读句子，必须等句子读完后才能作答！";
+        notice.className = "text-xs sm:text-sm font-black text-amber-800";
+        badge.textContent = "🔒 朗读中";
+        badge.className = "bg-amber-200 text-amber-900 text-xs font-black px-2.5 py-0.5 rounded-full";
+      } else {
+        wave.classList.add('opacity-20');
+        notice.textContent = "✅ 句子读完啦！请在 20 秒内完成两步作答！";
+        notice.className = "text-xs sm:text-sm font-black text-emerald-700";
+        badge.textContent = "🔓 已解锁";
+        badge.className = "bg-emerald-200 text-emerald-900 text-xs font-black px-2.5 py-0.5 rounded-full";
+      }
+    }
+
+    function replayQuizSentence() {
+      const q = quizQuestions[qIndex];
+      const text = (qStep === 1) ? q.blankSpeech : q.fullSpeech;
+      if (qLocked) {
+        speakText(text, () => {
+          if (qLocked && qStep === 1) {
+            setQuizAudioLock(false);
+            startQuizTimer();
+          }
+        });
+      } else {
+        const wave = document.getElementById('soundWaveAnim');
+        wave.classList.remove('opacity-20');
+        speakText(text, () => wave.classList.add('opacity-20'));
+      }
+    }
+
+    function startQuizTimer() {
+      stopQuizTimer();
+      qTimerInterval = setInterval(() => {
+        qTimeLeft -= 0.2;
+        if (qTimeLeft <= 0) {
+          qTimeLeft = 0;
+          updateQuizTimerUI(0, false);
+          stopQuizTimer();
+          handleQuizTimeout();
+        } else {
+          // 倒计时 ≤ 7 秒，背景音乐切换为紧张急促模式！
+          if (qTimeLeft <= 7 && !isTensionMode) {
+            isTensionMode = true;
+            document.getElementById('rightQuizPanel').classList.add('tension-border');
+            startBGM(); // 立即切换紧张音乐节奏
+          }
+          updateQuizTimerUI(qTimeLeft, false);
+        }
+      }, 200);
+    }
+
+    function stopQuizTimer() {
+      if (qTimerInterval) {
+        clearInterval(qTimerInterval);
+        qTimerInterval = null;
+      }
+    }
+
+    function updateQuizTimerUI(sec, waiting) {
+      const label = document.getElementById('timerStatusLabel');
+      const text = document.getElementById('timerText');
+      const bar = document.getElementById('timerBar');
+
+      const ceilSec = Math.ceil(sec);
+      text.textContent = `${ceilSec}s`;
+      bar.style.width = `${Math.max(0, (sec / Q_TOTAL_TIME) * 100)}%`;
+
+      if (waiting) {
+        label.textContent = "🎧 等待读完句子...";
+        label.className = "text-amber-600";
+        bar.className = "h-full bg-amber-400 rounded-full transition-all duration-200";
+        text.className = "text-sm sm:text-base text-amber-700 font-black";
+      } else if (sec > 7) {
+        label.textContent = "⏱️ 剩余作答时间：";
+        label.className = "text-emerald-700";
+        bar.className = "h-full bg-emerald-500 rounded-full transition-all duration-200";
+        text.className = "text-sm sm:text-base text-emerald-700 font-black";
+      } else {
+        label.textContent = "🔥 紧张倒计时！快作答：";
+        label.className = "text-rose-600 animate-pulse";
+        bar.className = "h-full bg-rose-600 rounded-full transition-all duration-200";
+        text.className = "text-sm sm:text-base text-rose-600 font-black animate-bounce";
+      }
+    }
+
+    function updateStepUI(step) {
+      const s1 = document.getElementById('step1Pill');
+      const s2 = document.getElementById('step2Pill');
+      const header = document.getElementById('instructionHeader');
+
+      if (step === 1) {
+        s1.className = "px-3.5 py-1 rounded-full text-xs font-black bg-blue-600 text-white shadow-sm";
+        s2.className = "px-3.5 py-1 rounded-full text-xs font-black bg-gray-200 text-gray-500";
+        header.textContent = "✏️ 第一步：请选出正确的英文字填入横线中：";
+      } else {
+        s1.className = "px-3.5 py-1 rounded-full text-xs font-black bg-emerald-500 text-white";
+        s2.className = "px-3.5 py-1 rounded-full text-xs font-black bg-indigo-600 text-white shadow-sm";
+        header.textContent = "🀄 第二步：请选出这个英文字的华语意思：";
+      }
+    }
+
+    function renderQuizOptions(step, locked = false) {
+      const q = quizQuestions[qIndex];
+      const grid = document.getElementById('optionsGrid');
+      grid.innerHTML = '';
+
+      let choices = [];
+      if (step === 1) {
+        choices = shuffle([
+          { text: q.word, isCorrect: true },
+          ...q.enDistractors.map(d => ({ text: d, isCorrect: false }))
+        ]);
+      } else {
+        choices = shuffle([
+          { text: q.cn, isCorrect: true },
+          ...q.cnDistractors.map(d => ({ text: d, isCorrect: false }))
+        ]);
+      }
+
+      const letters = ['A', 'B', 'C', 'D'];
+      choices.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = "btn-3d option-btn p-3.5 rounded-2xl font-extrabold text-base sm:text-lg flex items-center gap-2.5 text-left";
+        btn.disabled = locked;
+        btn.innerHTML = `
+          <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-900 flex items-center justify-center text-sm font-black shrink-0 border border-blue-300">${letters[i]}</span>
+          <span class="flex-1">${opt.text}</span>
+        `;
+        btn.onclick = () => handleQuizChoice(btn, opt);
+        grid.appendChild(btn);
+      });
+    }
+
+    function handleQuizChoice(btn, opt) {
+      if (qLocked) return;
+      const q = quizQuestions[qIndex];
+
+      if (opt.isCorrect) {
+        if (qStep === 1) {
+          // 第一步答对：英文填入句子，朗读完整句子，进入第二步选华语
+          playSFX('step1');
+          btn.classList.remove('option-btn');
+          btn.classList.add('bg-emerald-500', 'border-emerald-700', 'text-white');
+
+          document.getElementById('sentenceContainer').innerHTML = formatSentenceWithHints(q.displaySentence, q.word);
+          speakText(q.fullSpeech);
+
+          qStep = 2;
+          updateStepUI(2);
+          showQuizFeedback("👏 英文填空正确！接着选出它的华语意思！", "info");
+
+          setTimeout(() => renderQuizOptions(2, false), 280);
+        } else {
+          // 第二步答对：本题完成！
+          stopQuizTimer();
+          isTensionMode = false;
+          document.getElementById('rightQuizPanel').classList.remove('tension-border');
+          startBGM(); // 恢复正常欢快BGM
+
+          playSFX('win');
+          btn.classList.remove('option-btn');
+          btn.classList.add('bg-emerald-500', 'border-emerald-700', 'text-white');
+          document.querySelectorAll('#optionsGrid button').forEach(b => b.disabled = true);
+
+          if (!currentQHadMistake) {
+            rightCount++;
+            score += 100 + Math.ceil(qTimeLeft) * 2;
+          } else {
+            wrongCount++;
+            score += 40;
+          }
+
+          document.getElementById('liveRightCount').textContent = rightCount;
+          document.getElementById('liveWrongCount').textContent = wrongCount;
+
+          quizLogs.push({
+            word: q.word,
+            cn: q.cn,
+            isCorrect: !currentQHadMistake,
+            note: currentQHadMistake ? "曾选错一次" : "一次全对"
+          });
+
+          showQuizFeedback(`🎉 答对啦！${q.word} = 「${q.cn}」`, "success");
+          setTimeout(advanceQuizQuestion, 1450);
+        }
+      } else {
+        // 答错处理
+        playSFX('wrong');
+        currentQHadMistake = true;
+        btn.disabled = true;
+        btn.classList.remove('option-btn');
+        btn.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-700', 'animate-shake');
+
+        showQuizFeedback(
+          qStep === 1
+            ? "😅 英文不太对哦，看看句子的华语括弧提示再选一次！"
+            : `😅 华语意思不对哦，再想想 "${q.word}" 是什么意思？`,
+          "error"
+        );
+      }
+    }
+
+    function handleQuizTimeout() {
+      playSFX('wrong');
+      isTensionMode = false;
+      document.getElementById('rightQuizPanel').classList.remove('tension-border');
+      startBGM();
+
+      const q = quizQuestions[qIndex];
+      document.querySelectorAll('#optionsGrid button').forEach(b => b.disabled = true);
+      document.getElementById('sentenceContainer').innerHTML = formatSentenceWithHints(q.displaySentence, q.word);
+      speakText(q.fullSpeech);
+
+      wrongCount++;
+      document.getElementById('liveWrongCount').textContent = wrongCount;
+
+      quizLogs.push({
+        word: q.word,
+        cn: q.cn,
+        isCorrect: false,
+        note: "20秒超时未完成"
+      });
+
+      showQuizFeedback(`⏰ 20秒时间到！正确答案是：${q.word}（${q.cn}）`, "timeout");
+      setTimeout(advanceQuizQuestion, 2300);
+    }
+
+    function showQuizFeedback(msg, type) {
+      const fb = document.getElementById('feedbackBanner');
+      fb.classList.remove('hidden', 'bg-emerald-100', 'border-emerald-400', 'text-emerald-900',
+                          'bg-rose-100', 'border-rose-400', 'text-rose-900',
+                          'bg-blue-100', 'border-blue-400', 'text-blue-900',
+                          'bg-amber-100', 'border-amber-400', 'text-amber-900');
+      if (type === 'success') fb.classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+      else if (type === 'error') fb.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+      else if (type === 'timeout') fb.classList.add('bg-amber-100', 'border-amber-400', 'text-amber-900');
+      else fb.classList.add('bg-blue-100', 'border-blue-400', 'text-blue-900');
+      fb.textContent = msg;
+    }
+
+    function advanceQuizQuestion() {
+      qIndex++;
+      if (qIndex < quizQuestions.length) {
+        loadQuizQuestion();
+      } else {
+        finishAllQuiz();
+      }
+    }
+
+    /**
+     * ============================================================================
+     * 8. 成绩结算、集中汇总至 Google Sheet 及发送电邮至 g-88545190@moe-dl.edu.my
+     * ============================================================================
+     */
+    function finishAllQuiz() {
+      stopQuizTimer();
+      isTensionMode = false;
+      startBGM();
+      playSFX('win');
+
+      document.getElementById('workspaceScreen').classList.add('hidden');
+      document.getElementById('resultScreen').classList.remove('hidden');
+
+      const total = quizQuestions.length;
+      const accuracy = Math.round((rightCount / total) * 100);
+      const stageName = STAGE_NAMES[currentStageKey] || currentStageKey;
+
+      document.getElementById('resultStudentBadge').textContent =
+        `学生：${studentName} | 班级：${studentClass} | 关卡：${stageName}`;
+      document.getElementById('resCorrect').textContent = `${rightCount} 题`;
+      document.getElementById('resWrong').textContent = `${wrongCount} 题`;
+      document.getElementById('resAccuracy').textContent = `${accuracy}%`;
+      document.getElementById('resScore').textContent = `${score} 分`;
+
+      // 渲染答题明细
+      const detailEl = document.getElementById('resultDetailList');
+      detailEl.innerHTML = '';
+      quizLogs.forEach((log, idx) => {
+        const row = document.createElement('div');
+        row.className = `p-3 rounded-2xl border-2 flex items-center justify-between text-xs sm:text-sm font-bold ${
+          log.isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-300 text-rose-900'
+        }`;
+        row.innerHTML = `
+          <div>
+            <span class="font-black mr-1">${idx + 1}. ${log.word}</span>
+            <span>(${log.cn})</span>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-lg text-xs font-black ${
+            log.isCorrect ? 'bg-emerald-200 text-emerald-950' : 'bg-rose-200 text-rose-950'
+          }">${log.isCorrect ? '✅ 答对' : `❌ 答错 (${log.note})`}</span>
+        `;
+        detailEl.appendChild(row);
+      });
+
+      // 构建集中汇总记录对象
+      const wrongWordsList = quizLogs
+        .filter(l => !l.isCorrect)
+        .map(l => `${l.word}(${l.cn})`)
+        .join(', ');
+
+      const recordPayload = {
+        timestamp: new Date().toLocaleString('zh-MY', { hour12: false }),
+        studentName,
+        studentClass,
+        stageName,
+        totalQuestions: total,
+        correctCount: rightCount,
+        wrongCount: wrongCount,
+        accuracy,
+        score,
+        wrongDetails: wrongWordsList || "全对无错题"
+      };
+
+      // 1. 存入本地集中总表 (localStorage)
+      saveRecordToMasterSheet(recordPayload);
+
+      // 2. 自动推送到老师的 Google Sheet + 触发 Gmail 通知至 g-88545190@moe-dl.edu.my
+      syncToGoogleSheetAndEmail(recordPayload);
+    }
+
+    function saveRecordToMasterSheet(record) {
+      const existing = JSON.parse(localStorage.getItem('y4_unit1_master_sheet') || '[]');
+      existing.unshift(record);
+      localStorage.setItem('y4_unit1_master_sheet', JSON.stringify(existing));
+    }
+
+    async function syncToGoogleSheetAndEmail(payload) {
+      const gasUrl = localStorage.getItem('y4_unit1_gas_url') || '';
+      const statusEl = document.getElementById('syncStatusText');
+
+      if (!gasUrl) {
+        statusEl.innerHTML = `✅ 成绩已写入本地【全班汇总总表】！如需全自动后台写入云端 Google Sheet 并自动发邮件给 <strong>${TEACHER_EMAIL}</strong>，请点击右上角「教师成绩汇总 & Sheet设置」粘贴脚本网址，或点击右侧按钮直接发送邮件。`;
+        return;
+      }
+
+      try {
+        await fetch(gasUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        statusEl.innerHTML = `🎉 已成功将成绩集中写入老师的 <strong>Google Sheet</strong>，并已自动发送对错统计邮件至 <strong>${TEACHER_EMAIL}</strong>！`;
+      } catch (err) {
+        statusEl.innerHTML = `⚠️ 网络推送异常，成绩已保存在本地总表中，您也可以点击右侧按钮手动发送邮件至 <strong>${TEACHER_EMAIL}</strong>。`;
+      }
+    }
+
+    function sendEmailFallback() {
+      const total = quizQuestions.length;
+      const accuracy = Math.round((rightCount / total) * 100);
+      const stageName = STAGE_NAMES[currentStageKey] || currentStageKey;
+      const wrongWords = quizLogs.filter(l => !l.isCorrect).map(l => `${l.word}(${l.cn})`).join(', ') || "全对无错题";
+
+      const subject = encodeURIComponent(`【Year 4 英文测验成绩】${studentClass} - ${studentName} (对${rightCount}题 / 错${wrongCount}题)`);
+      const body = encodeURIComponent(
+        `老师您好，以下是我的 Year 4 Unit 1 互动测验成绩汇报：\n\n` +
+        `• 学生姓名：${studentName}\n` +
+        `• 班级：${studentClass}\n` +
+        `• 测验关卡：${stageName}\n` +
+        `• 总题数：${total} 题\n` +
+        `• 回答正确：${rightCount} 题\n` +
+        `• 回答错误：${wrongCount} 题\n` +
+        `• 正确率：${accuracy}%\n` +
+        `• 总得分：${score} 分\n` +
+        `• 答错生字明细：${wrongWords}\n`
+      );
+      window.location.href = `mailto:${TEACHER_EMAIL}?subject=${subject}&body=${body}`;
+    }
+
+    /**
+     * ============================================================================
+     * 9. 教师后台管理弹窗（查看集中汇总表、导出 CSV、配置 Google Sheet URL）
+     * ============================================================================
+     */
+    function openTeacherModal() {
+      document.getElementById('gasUrlInput').value = localStorage.getItem('y4_unit1_gas_url') || '';
+      renderMasterSheetTable();
+      document.getElementById('teacherModal').classList.remove('hidden');
+    }
+
+    function closeTeacherModal() {
+      document.getElementById('teacherModal').classList.add('hidden');
+    }
+
+    function saveGasUrl() {
+      const url = document.getElementById('gasUrlInput').value.trim();
+      localStorage.setItem('y4_unit1_gas_url', url);
+      const btn = event.target;
+      const oldText = btn.textContent;
+      btn.textContent = "✅ 已保存！";
+      setTimeout(() => { btn.textContent = oldText; }, 1800);
+    }
+
+    function copyGasScript() {
+      const box = document.getElementById('gasCodeBox');
+      box.select();
+      document.execCommand('copy');
+      const btn = event.target;
+      btn.textContent = "✅ 已复制代码！";
+      setTimeout(() => { btn.textContent = "📋 复制代码"; }, 1800);
+    }
+
+    function renderMasterSheetTable() {
+      const records = JSON.parse(localStorage.getItem('y4_unit1_master_sheet') || '[]');
+      const tbody = document.getElementById('masterSheetTableBody');
+      tbody.innerHTML = '';
+
+      if (records.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-gray-400">暂无学生完成记录，学生完成测验后将自动集中显示在此表中。</td></tr>`;
+        return;
+      }
+
+      records.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-blue-50/60";
+        tr.innerHTML = `
+          <td class="p-2.5 text-xs text-gray-500">${r.timestamp}</td>
+          <td class="p-2.5 font-black text-blue-950">${r.studentName}</td>
+          <td class="p-2.5">${r.studentClass}</td>
+          <td class="p-2.5 text-xs">${r.stageName}</td>
+          <td class="p-2.5 text-emerald-600 font-black">${r.correctCount} 题</td>
+          <td class="p-2.5 text-rose-600 font-black">${r.wrongCount} 题</td>
+          <td class="p-2.5">${r.accuracy}%</td>
+          <td class="p-2.5 text-xs text-rose-700">${r.wrongDetails}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function exportAllRecordsCSV() {
+      const records = JSON.parse(localStorage.getItem('y4_unit1_master_sheet') || '[]');
+      if (records.length === 0) return;
+
+      const headers = ["提交时间", "学生姓名", "班级", "关卡单元", "总题数", "答对题数", "答错题数", "正确率(%)", "总得分", "答错生字明细"];
+      const rows = records.map(r => [
+        `"${r.timestamp}"`,
+        `"${r.studentName}"`,
+        `"${r.studentClass}"`,
+        `"${r.stageName}"`,
+        r.totalQuestions,
+        r.correctCount,
+        r.wrongCount,
+        `"${r.accuracy}%"`,
+        r.score,
+        `"${r.wrongDetails}"`
+      ].join(","));
+
+      const csvContent = "\uFEFF" + [headers.join(","), ...rows].join("\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Year4_Unit1_学生测验总成绩表_${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearAllRecords() {
+      localStorage.removeItem('y4_unit1_master_sheet');
+      renderMasterSheetTable();
+    }
+
+    /**
+     * ============================================================================
+     * 10. 导航与返回控制
+     * ============================================================================
+     */
+    function confirmReturnHome() {
+      if (!document.getElementById('workspaceScreen').classList.contains('hidden')) {
+        document.getElementById('confirmModal').classList.remove('hidden');
+      } else {
+        returnToHome();
+      }
+    }
+
+    function closeConfirmModal() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function returnToHome() {
+      clearInterval(fcCountdownInterval);
+      stopQuizTimer();
+      stopBGM();
+      clearTimeout(speechSafetyTimer);
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+      closeConfirmModal();
+      document.getElementById('workspaceScreen').classList.add('hidden');
+      document.getElementById('resultScreen').classList.add('hidden');
+      document.getElementById('homeBtn').classList.add('hidden');
+      document.getElementById('loginScreen').classList.remove('hidden');
+    }
+
+    function restartCurrentStage() {
+      validateAndStart(currentStageKey);
+    }
+  </script>
+</body>
+</html>
